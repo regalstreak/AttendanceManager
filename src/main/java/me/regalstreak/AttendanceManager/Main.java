@@ -1,4 +1,4 @@
-package sample;
+package me.regalstreak;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
