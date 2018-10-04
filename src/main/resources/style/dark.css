@@ -20,6 +20,14 @@
     -fx-fill: -fx-glyph;
 }
 
+.hbox-icon {
+    -fx-fill: -fx-glyph;
+}
+
+.hbox-icon:hover {
+    -fx-cursor: hand;
+}
+
 .button {
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
@@ -136,7 +144,6 @@
 .chart-pie-label {
     -fx-fill: derive(-fx-secondary, -5%);
 }
-
 
 /*JFXDialog*/
 .jfx-layout-heading {
