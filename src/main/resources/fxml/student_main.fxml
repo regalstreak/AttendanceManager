@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane fx:id="studentMain" maxHeight="-Infinity" maxWidth="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" styleClass="root" stylesheets="@../style/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.regalstreak.AttendanceManager.controller.StudentController">
+    <children>
+        <Label layoutX="24.0" layoutY="33.0" prefHeight="19.0" prefWidth="63.0" styleClass="main-text-light" stylesheets="@../style/dark.css" text="Hey" />
+        <Label layoutX="87.0" layoutY="33.0" prefHeight="29.0" prefWidth="262.0" styleClass="main-text" stylesheets="@../style/dark.css" text="Neil!" />
+        <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="900.0">
+            <children>
+                <FontIcon iconLiteral="ion4-ios-remove" iconSize="25" layoutX="15.0" layoutY="21.0" onMouseClicked="#min" styleClass="hbox-icon">
+                    <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </HBox.margin>
+                </FontIcon>
+                <FontIcon iconLiteral="ion4-ios-square" iconSize="18" layoutX="20.0" layoutY="46.0" onMouseClicked="#max" styleClass="hbox-icon">
+                    <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </HBox.margin>
+                </FontIcon>
+                <FontIcon iconLiteral="ion4-ios-close" iconSize="26" layoutX="46.0" layoutY="36.0" onMouseClicked="#close" styleClass="hbox-icon">
+                    <HBox.margin>
+                        <Insets bottom="8.0" left="8.0" right="15.0" top="8.0" />
+                    </HBox.margin>
+                </FontIcon>
+            </children>
+        </HBox>
+      <JFXListView fx:id="subjects" layoutX="24.0" layoutY="140.0" prefHeight="349.0" prefWidth="252.0" />
+
+
+    </children>
+</AnchorPane>

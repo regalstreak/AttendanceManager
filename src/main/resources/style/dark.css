@@ -94,6 +94,13 @@
     -fx-text-fill: -fx-primarytext;
 }
 
+.main-text-light {
+    -fx-fill: derive(-fx-primarytext, -20%);
+    -fx-font-size: 22pt;
+    -fx-text-alignment: center;
+    -fx-text-fill: derive(-fx-primarytext, -20%);
+}
+
 .forgot-text {
     -fx-fill: -fx-secondary;
     -fx-font-size: 10pt;
@@ -110,6 +117,19 @@
 
 .submission-container {
     -fx-background-color: derive(-fx-primary, 10%);
+}
+
+/* JFXListView */
+.jfx-list-view {
+    -fx-cell-vertical-margin: 10.0;
+    -fx-background-insets: 0;
+    -fx-vertical-gap: 10;
+    -fx-background-color: -fx-primary;
+}
+
+.jfx-list-cell {
+    -fx-background-color: derive(-fx-primary, 30%);
+    -fx-background-insets: 0.0;
 }
 
 /*Dialog*/
