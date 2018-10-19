@@ -101,6 +101,20 @@
     -fx-text-fill: derive(-fx-primarytext, -20%);
 }
 
+.main-text-smol {
+    -fx-fill: -fx-secondary;
+    -fx-font-size: 18pt;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-primarytext;
+}
+
+.main-text-light-smol {
+    -fx-fill: derive(-fx-primarytext, -20%);
+    -fx-font-size: 18pt;
+    -fx-text-alignment: center;
+    -fx-text-fill: derive(-fx-primarytext, -20%);
+}
+
 .forgot-text {
     -fx-fill: -fx-secondary;
     -fx-font-size: 10pt;

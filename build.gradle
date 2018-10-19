@@ -26,6 +26,7 @@ dependencies {
     compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.7'
     compile 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
     compile 'org.kordamp.ikonli:ikonli-ionicons4-pack:2.4.0'
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
 }
 
 apply plugin: 'javafx-gradle-plugin'
