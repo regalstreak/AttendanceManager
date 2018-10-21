@@ -19,7 +19,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class StudentController implements Initializable {
+public class AdminController implements Initializable {
     Connection connection = null;
 
     int userID = 0;
@@ -74,7 +74,7 @@ public class StudentController implements Initializable {
 
             String url = "jdbc:sqlite:/home/regalstreak/development/IdeaProjects/AttendanceManager/db/AttendanceManager.db";
             connection = DriverManager.getConnection(url);
-            System.out.println("Connection has been established in Student main F");
+            System.out.println("Connection has been established in Admin main F");
 
             String sql = "SELECT SUBJECTS.id, SUBJECTS.subject" +
                     " from TIMETABLE, SUBJECTS where" +

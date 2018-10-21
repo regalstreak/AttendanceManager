@@ -25,13 +25,13 @@
         </AnchorPane>
         <AnchorPane layoutX="450.0" prefHeight="580.0" prefWidth="450.0">
             <children>
-                <JFXTextField layoutX="100.0" layoutY="209.0" prefHeight="32.0" prefWidth="251.0" promptText="username" />
-                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="505.0" onAction="#registerStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Register" />
                 <Label layoutX="148.0" layoutY="73.0" prefHeight="60.0" prefWidth="132.0" styleClass="main-text" stylesheets="@../style/dark.css" text="Register" />
-            <JFXPasswordField layoutX="100.0" layoutY="383.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
-            <JFXPasswordField layoutX="100.0" layoutY="436.0" prefHeight="32.0" prefWidth="251.0" promptText="confirm password" />
-            <JFXTextField layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="email" />
-            <JFXTextField layoutX="100.0" layoutY="324.0" prefHeight="32.0" prefWidth="251.0" promptText="batch" />
+                <JFXTextField fx:id="username" layoutX="100.0" layoutY="209.0" prefHeight="32.0" prefWidth="251.0" promptText="username" />
+            <JFXTextField fx:id="email" layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="email" />
+            <JFXTextField fx:id="batch" layoutX="100.0" layoutY="324.0" prefHeight="32.0" prefWidth="251.0" promptText="batch" />
+            <JFXPasswordField fx:id="password" layoutX="100.0" layoutY="383.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
+            <JFXPasswordField fx:id="confirmpassword" layoutX="100.0" layoutY="436.0" prefHeight="32.0" prefWidth="251.0" promptText="confirm password" />
+                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="505.0" onAction="#registerStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Register" />
             </children>
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="900.0">

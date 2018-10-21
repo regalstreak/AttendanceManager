@@ -25,12 +25,12 @@
         </AnchorPane>
         <AnchorPane layoutX="450.0" prefHeight="580.0" prefWidth="450.0">
             <children>
-                <JFXPasswordField layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
-                <JFXTextField layoutX="100.0" layoutY="209.0" prefHeight="32.0" prefWidth="251.0" promptText="username" />
-                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="405.0" onAction="#loadStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Login" />
                 <Label layoutX="170.0" layoutY="73.0" prefHeight="60.0" prefWidth="110.0" styleClass="main-text" stylesheets="@../style/dark.css" text="Sign in" />
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="490.0" prefHeight="21.0" prefWidth="118.0" styleClass="forgot-text" stylesheets="@../style/dark.css" text="Forgot Password" />
+                <JFXTextField layoutX="100.0" layoutY="209.0" prefHeight="32.0" prefWidth="251.0" promptText="username" />
+                <JFXPasswordField layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
+                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="405.0" onAction="#loadStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Login" />
             <Label fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="457.0" onMouseClicked="#registerUser" prefHeight="21.0" prefWidth="74.0" styleClass="forgot-text" stylesheets="@../style/dark.css" text="Register" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="490.0" prefHeight="21.0" prefWidth="118.0" styleClass="forgot-text" stylesheets="@../style/dark.css" text="Forgot Password" />
             </children>
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="900.0">
