@@ -32,11 +32,9 @@
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
 }
 
-.button:hover, .button:focused {
+.button:hover{
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
@@ -57,6 +55,14 @@
 .wrong-credentials {
     -jfx-unfocus-color: -fx-red;
     -jfx-focus-color: -fx-red;
+}
+
+.button-submit {
+    -fx-text-fill: -fx-primarytext;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
 }
 
 /*Hamburger Styling*/
@@ -142,7 +148,8 @@
 }
 
 .jfx-list-cell {
-    -fx-background-color: derive(-fx-primary, 30%);
+    /* -fx-background-color: derive(-fx-primary, 30%); */
+    -fx-background-color: -fx-primary;
     -fx-background-insets: 0.0;
 }
 

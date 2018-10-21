@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" styleClass="root" stylesheets="@../style/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.regalstreak.AttendanceManager.controller.LoginController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="900.0" styleClass="root" stylesheets="@../style/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.regalstreak.AttendanceManager.controller.RegisterUserController">
     <children>
         <AnchorPane prefHeight="580.0" prefWidth="450.0" styleClass="login-left">
             <children>
@@ -25,12 +25,13 @@
         </AnchorPane>
         <AnchorPane layoutX="450.0" prefHeight="580.0" prefWidth="450.0">
             <children>
-                <JFXPasswordField layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
                 <JFXTextField layoutX="100.0" layoutY="209.0" prefHeight="32.0" prefWidth="251.0" promptText="username" />
-                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="405.0" onAction="#loadStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Login" />
-                <Label layoutX="170.0" layoutY="73.0" prefHeight="60.0" prefWidth="110.0" styleClass="main-text" stylesheets="@../style/dark.css" text="Sign in" />
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="490.0" prefHeight="21.0" prefWidth="118.0" styleClass="forgot-text" stylesheets="@../style/dark.css" text="Forgot Password" />
-            <Label fx:id="register" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="457.0" onMouseClicked="#registerUser" prefHeight="21.0" prefWidth="74.0" styleClass="forgot-text" stylesheets="@../style/dark.css" text="Register" />
+                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="505.0" onAction="#registerStudent" prefHeight="45.0" prefWidth="101.0" styleClass="button-submit" text="Register" />
+                <Label layoutX="148.0" layoutY="73.0" prefHeight="60.0" prefWidth="132.0" styleClass="main-text" stylesheets="@../style/dark.css" text="Register" />
+            <JFXPasswordField layoutX="100.0" layoutY="383.0" prefHeight="32.0" prefWidth="251.0" promptText="password" />
+            <JFXPasswordField layoutX="100.0" layoutY="436.0" prefHeight="32.0" prefWidth="251.0" promptText="confirm password" />
+            <JFXTextField layoutX="100.0" layoutY="265.0" prefHeight="32.0" prefWidth="251.0" promptText="email" />
+            <JFXTextField layoutX="100.0" layoutY="324.0" prefHeight="32.0" prefWidth="251.0" promptText="batch" />
             </children>
         </AnchorPane>
         <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="900.0">
