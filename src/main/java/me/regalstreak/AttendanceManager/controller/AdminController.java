@@ -1,15 +1,11 @@
 package me.regalstreak.AttendanceManager.controller;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -37,7 +33,6 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         connect();
-        day.setText(getDay());
     }
 
     @FXML
@@ -63,7 +58,7 @@ public class AdminController implements Initializable {
     }
 
     void connect() {
-
+        gridPane.setGridLinesVisible(true);
         try {
 
             if (connection != null) {
@@ -76,9 +71,7 @@ public class AdminController implements Initializable {
             connection = DriverManager.getConnection(url);
             System.out.println("Connection has been established in Admin main F");
 
-            String sql = "SELECT SUBJECTS.id, SUBJECTS.subject" +
-                    " from TIMETABLE, SUBJECTS where" +
-                    " TIMETABLE." + getDay() + " = SUBJECTS.id";
+            String sql = "SELECT * from USERS";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -86,128 +79,132 @@ public class AdminController implements Initializable {
             gridPane.setHgap(30);
             gridPane.setVgap(10);
             gridPane.setPadding(new Insets(0, 10, 0, 10));
-            int y = 0;
+            int y = 1;
 
             while (resultSet.next()) {
-                HBox hBox = new HBox();
-                hBox.setSpacing(10);
-
-                String currentSubject = resultSet.getString("subject");
-
-                String currentSubjectAttendanceQuery = String.format("SELECT %s, %s from USERS where id=%s", currentSubject, currentSubject.toLowerCase() + "total", userID);
-                Statement statement1 = connection.createStatement();
-                ResultSet resultSet1 = statement1.executeQuery(currentSubjectAttendanceQuery);
-                int currentSubjectAttendance = Integer.parseInt(resultSet1.getString(currentSubject));
-                int currentSubjectTotalAttendance = Integer.parseInt(resultSet1.getString(currentSubject.toLowerCase() + "total"));
-
-                JFXButton button1 = new JFXButton("Attended");
-                button1.setPrefSize(90, 22);
-                button1.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-
-                        String attend = String.format("update USERS " +
-                                "SET totalattendance=?,%s=?,%s=? where id=?", currentSubject, currentSubject.toLowerCase() + "total");
-
-                        try {
-                            PreparedStatement attended = connection.prepareStatement(attend);
-                            attended.setInt(1, 100); // totalattendance
-                            attended.setInt(2, currentSubjectAttendance + 1); // subjA
-                            attended.setInt(3, currentSubjectTotalAttendance + 1); // subjtotalA
-                            attended.setInt(4, userID); // id
-
-                            attended.executeUpdate();
-
-                            connection.close();
-                            resultSet.close();
-                            resultSet1.close();
-
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (connection != null) {
-                                try {
-                                    connection.close();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            connect();
-                        }
 
 
-                    }
-                });
+                Label noText = new Label("No.");
+                noText.setPadding(new Insets(10));
+                noText.setTextFill(Color.web("#B2B2B2"));
 
-                JFXButton button2 = new JFXButton("Bunked");
-                button2.setPrefSize(90, 22);
-                button2.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
+                Label no = new Label(Integer.toString(y));
+                no.setPadding(new Insets(10));
+                no.setTextFill(Color.web("#B2B2B2"));
 
-                        String attend = String.format("update USERS " +
-                                "SET totalattendance=?,%s=? where id=?", currentSubject.toLowerCase() + "total");
+                Label username = new Label(resultSet.getString("username"));
+                username.setPadding(new Insets(10));
+                username.setTextFill(Color.web("#B2B2B2"));
 
-                        try {
-                            PreparedStatement attended = connection.prepareStatement(attend);
-                            attended.setInt(1, 100); // totalattendance
-                            attended.setInt(2, currentSubjectTotalAttendance + 1); // subjtotalA
-                            attended.setInt(3, userID); // id
+                Label usernameText = new Label("USERNAME");
+                usernameText.setPadding(new Insets(10));
+                usernameText.setTextFill(Color.web("#B2B2B2"));
 
-                            attended.executeUpdate();
+                Label AM3 = new Label(resultSet.getString("AM3"));
+                AM3.setPadding(new Insets(10));
+                AM3.setTextFill(Color.web("#B2B2B2"));
+
+                Label AM3Text = new Label("AM3");
+                AM3Text.setPadding(new Insets(10));
+                AM3Text.setTextFill(Color.web("#B2B2B2"));
+
+                Label ECCF = new Label(resultSet.getString("ECCF"));
+                ECCF.setPadding(new Insets(10));
+                ECCF.setTextFill(Color.web("#B2B2B2"));
+
+                Label ECCFText = new Label("ECCF");
+                ECCFText.setPadding(new Insets(10));
+                ECCFText.setTextFill(Color.web("#B2B2B2"));
+
+                Label OOPM = new Label(resultSet.getString("OOPM"));
+                OOPM.setPadding(new Insets(10));
+                OOPM.setTextFill(Color.web("#B2B2B2"));
+
+                Label OOPMText = new Label("OOPM");
+                OOPMText.setPadding(new Insets(10));
+                OOPMText.setTextFill(Color.web("#B2B2B2"));
+
+                Label DLDA = new Label(resultSet.getString("DLDA"));
+                DLDA.setPadding(new Insets(10));
+                DLDA.setTextFill(Color.web("#B2B2B2"));
+
+                Label DLDAText = new Label("DLDA");
+                DLDAText.setPadding(new Insets(10));
+                DLDAText.setTextFill(Color.web("#B2B2B2"));
+
+                Label DIS = new Label(resultSet.getString("DIS"));
+                DIS.setPadding(new Insets(10));
+                DIS.setTextFill(Color.web("#B2B2B2"));
+
+                Label DISText = new Label("DIS");
+                DISText.setPadding(new Insets(10));
+                DISText.setTextFill(Color.web("#B2B2B2"));
+
+                Label DS = new Label(resultSet.getString("DS"));
+                DS.setPadding(new Insets(10));
+                DS.setTextFill(Color.web("#B2B2B2"));
+
+                Label DSText = new Label("DS");
+                DSText.setPadding(new Insets(10));
+                DSText.setTextFill(Color.web("#B2B2B2"));
+
+                Label DSL = new Label(resultSet.getString("DSL"));
+                DSL.setPadding(new Insets(10));
+                DSL.setTextFill(Color.web("#B2B2B2"));
+
+                Label DSLText = new Label("DSL");
+                DSLText.setPadding(new Insets(10));
+                DSLText.setTextFill(Color.web("#B2B2B2"));
+
+                Label DSYL = new Label(resultSet.getString("DSYL"));
+                DSYL.setPadding(new Insets(10));
+                DSYL.setTextFill(Color.web("#B2B2B2"));
+
+                Label DSYLText = new Label("DSYL");
+                DSYLText.setPadding(new Insets(10));
+                DSYLText.setTextFill(Color.web("#B2B2B2"));
+
+                Label BEL = new Label(resultSet.getString("BEL"));
+                BEL.setPadding(new Insets(10));
+                BEL.setTextFill(Color.web("#B2B2B2"));
+
+                Label BELText = new Label("BEL");
+                BELText.setPadding(new Insets(10));
+                BELText.setTextFill(Color.web("#B2B2B2"));
+
+                Label OOPML = new Label(resultSet.getString("OOPML"));
+                OOPML.setPadding(new Insets(10));
+                OOPML.setTextFill(Color.web("#B2B2B2"));
+
+                Label OOPMLText = new Label("OOPML");
+                OOPMLText.setPadding(new Insets(10));
+                OOPMLText.setTextFill(Color.web("#B2B2B2"));
 
 
-                            connection.close();
-                            resultSet.close();
-                            resultSet1.close();
+                gridPane.setConstraints(no, 0, y);
+                gridPane.setConstraints(username, 1, y);
+                gridPane.setConstraints(AM3, 2, y);
+                gridPane.setConstraints(OOPM, 3, y);
+                gridPane.setConstraints(OOPML, 4, y);
+                gridPane.setConstraints(DS, 5, y);
+                gridPane.setConstraints(DIS, 6, y);
+                gridPane.setConstraints(DLDA, 7, y);
+                gridPane.setConstraints(DSL, 8, y);
+                gridPane.setConstraints(DSYL, 9, y);
 
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (connection != null) {
-                                try {
-                                    connection.close();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                            }
+                gridPane.setConstraints(noText, 0, 0);
+                gridPane.setConstraints(usernameText, 1, 0);
+                gridPane.setConstraints(AM3Text, 2, 0);
+                gridPane.setConstraints(OOPMText, 3, 0);
+                gridPane.setConstraints(OOPMLText, 4, 0);
+                gridPane.setConstraints(DSText, 5, 0);
+                gridPane.setConstraints(DISText, 6, 0);
+                gridPane.setConstraints(DLDAText, 7, 0);
+                gridPane.setConstraints(DSLText, 8, 0);
+                gridPane.setConstraints(DSYLText, 9, 0);
 
-                            connect();
-                        }
-
-                    }
-                });
-
-                JFXButton button3 = new JFXButton("No Class");
-                button3.setPrefSize(90, 22);
-                button3.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-
-                    }
-                });
-
-                Label subject = new Label(resultSet.getString("subject"));
-                subject.setPadding(new Insets(10));
-                subject.setTextFill(Color.web("#B2B2B2"));
-
-                hBox.getChildren().addAll(button1, button2, button3);
-
-                float subjectPercentage = 0;
-                if (currentSubjectAttendance != 0 && currentSubjectTotalAttendance != 0) {
-                    subjectPercentage = Math.round(currentSubjectAttendance * 100 / currentSubjectTotalAttendance);
-                }
-
-                Label percent = new Label(subjectPercentage + "%");
-                percent.setPadding(new Insets(10));
-                percent.setTextFill(Color.web("#B2B2B2"));
-
-                gridPane.setConstraints(subject, 0, y);
-                gridPane.setConstraints(hBox, 1, y);
-                gridPane.setConstraints(percent, 2, y);
-
-                gridPane.getChildren().addAll(subject, hBox, percent);
+                gridPane.getChildren().addAll(no, username, AM3, OOPM, OOPML, DS, DIS, DLDA, DSL, DSYL,
+                        noText, usernameText, AM3Text, OOPMText, OOPMLText, DSText, DISText, DLDAText, DSLText, DSYLText);
                 y++;
 
             }

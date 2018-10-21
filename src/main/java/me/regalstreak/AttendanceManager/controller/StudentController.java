@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 public class StudentController implements Initializable {
     Connection connection = null;
 
-    int userID = 0;
+    int userID = LoginController.ourUser.index;
     int totalattendance = 100;
     int subj = 0;
     int totalsubj = 0;
@@ -33,6 +33,9 @@ public class StudentController implements Initializable {
 
     @FXML
     private Label day;
+
+    @FXML
+    private Label username;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,6 +73,8 @@ public class StudentController implements Initializable {
                 connection.close();
             }
 
+            username.setText(LoginController.ourUser.userName + "!");
+
             gridPane.getChildren().clear();
 
             String url = "jdbc:sqlite:/home/regalstreak/development/IdeaProjects/AttendanceManager/db/AttendanceManager.db";
@@ -87,6 +92,7 @@ public class StudentController implements Initializable {
             gridPane.setVgap(10);
             gridPane.setPadding(new Insets(0, 10, 0, 10));
             int y = 0;
+
 
             while (resultSet.next()) {
                 HBox hBox = new HBox();
@@ -125,12 +131,10 @@ public class StudentController implements Initializable {
                         } catch (SQLException e) {
                             e.printStackTrace();
                         } finally {
-                            if (connection != null) {
-                                try {
-                                    connection.close();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
+                            try {
+                                connection.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
                             }
 
                             connect();

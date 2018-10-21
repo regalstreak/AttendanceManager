@@ -9,8 +9,8 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.regex.Pattern;
 
 public class RegisterUserController {
@@ -83,7 +83,6 @@ public class RegisterUserController {
 
     void connectDB(String[] args) {
         Connection connection = null;
-        Statement statement = null;
 
         try {
             String url = "jdbc:sqlite:/home/regalstreak/development/IdeaProjects/AttendanceManager/db/AttendanceManager.db";
@@ -92,12 +91,16 @@ public class RegisterUserController {
 
             System.out.println("Connection has been established in Registration F");
 
-            String insertUser = "INSERT INTO USERS (username,email,batch,password)" +
-                    " VALUES ('" + args[0] + "','" + args[1] + "','" + args[2] + "','" + args[3] + "')";
+            String insertUser = "insert into USERS (username,email,batch,password,totalattendance,AM3,am3total,OOPM,oopmtotal,OOPML,oopmltotal,DS,dstotal,DSYL,dsyltotal,DSL,dsltotal,BEL,beltotal,ECCF,eccftotal,DLDA,dldatotal,DIS,distotal) values (?,?,?,?,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)";
 
-            statement = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(insertUser);
 
-            statement.executeUpdate(insertUser);
+            statement.setString(1, args[0]);
+            statement.setString(2, args[1]);
+            statement.setString(3, args[2]);
+            statement.setString(4, args[3]);
+            statement.executeUpdate();
+
             connection.commit();
         } catch (SQLException e) {
             if (connection != null) {
@@ -108,24 +111,23 @@ public class RegisterUserController {
                 }
             }
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
             try {
-                if (connection != null) {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                }
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
+        try {
+            if (connection != null) {
+                connection.setAutoCommit(true);
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
+
 
     boolean emailIsValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
