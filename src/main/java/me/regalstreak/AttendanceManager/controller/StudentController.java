@@ -108,36 +108,48 @@ public class StudentController implements Initializable {
 
                 JFXButton button1 = new JFXButton("Attended");
                 button1.setPrefSize(90, 22);
+
                 button1.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
 
-                        String attend = String.format("update USERS " +
-                                "SET totalattendance=?,%s=?,%s=? where id=?", currentSubject, currentSubject.toLowerCase() + "total");
-
                         try {
-                            PreparedStatement attended = connection.prepareStatement(attend);
-                            attended.setInt(1, 100); // totalattendance
-                            attended.setInt(2, currentSubjectAttendance + 1); // subjA
-                            attended.setInt(3, currentSubjectTotalAttendance + 1); // subjtotalA
-                            attended.setInt(4, userID); // id
-
-                            attended.executeUpdate();
-
                             connection.close();
-                            resultSet.close();
-                            resultSet1.close();
+                            String url = "jdbc:sqlite:/home/regalstreak/development/IdeaProjects/AttendanceManager/db/AttendanceManager.db";
+                            Connection connection1 = DriverManager.getConnection(url);
 
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
+                            System.out.println("Connection has been established in Button main F");
+
+
+                            String attend = String.format("update USERS " +
+                                    "SET totalattendance=?,%s=?,%s=? where id=?", currentSubject, currentSubject.toLowerCase() + "total");
+
                             try {
-                                connection.close();
+                                PreparedStatement attended = connection1.prepareStatement(attend);
+                                attended.setInt(1, 100); // totalattendance
+                                attended.setInt(2, currentSubjectAttendance + 1); // subjA
+                                attended.setInt(3, currentSubjectTotalAttendance + 1); // subjtotalA
+                                attended.setInt(4, userID); // id
+
+                                attended.executeUpdate();
+
+                                resultSet.close();
+                                resultSet1.close();
+                                connection1.close();
+
                             } catch (SQLException e) {
                                 e.printStackTrace();
+                            } finally {
+                                try {
+                                    connection.close();
+                                    connection1.close();
+                                    connect();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
                             }
-
-                            connect();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
                         }
 
 
@@ -150,35 +162,45 @@ public class StudentController implements Initializable {
                     @Override
                     public void handle(ActionEvent event) {
 
-                        String attend = String.format("update USERS " +
-                                "SET totalattendance=?,%s=? where id=?", currentSubject.toLowerCase() + "total");
-
                         try {
-                            PreparedStatement attended = connection.prepareStatement(attend);
-                            attended.setInt(1, 100); // totalattendance
-                            attended.setInt(2, currentSubjectTotalAttendance + 1); // subjtotalA
-                            attended.setInt(3, userID); // id
-
-                            attended.executeUpdate();
-
-
                             connection.close();
-                            resultSet.close();
-                            resultSet1.close();
+                            String url = "jdbc:sqlite:/home/regalstreak/development/IdeaProjects/AttendanceManager/db/AttendanceManager.db";
+                            Connection connection1 = DriverManager.getConnection(url);
 
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (connection != null) {
+                            System.out.println("Connection has been established in Button main F");
+
+
+                            String attend = String.format("update USERS " +
+                                    "SET totalattendance=?,%s=?,%s=? where id=?", currentSubject, currentSubject.toLowerCase() + "total");
+
+                            try {
+                                PreparedStatement attended = connection1.prepareStatement(attend);
+                                attended.setInt(1, 100); // totalattendance
+                                attended.setInt(2, currentSubjectAttendance); // subjA
+                                attended.setInt(3, currentSubjectTotalAttendance + 1); // subjtotalA
+                                attended.setInt(4, userID); // id
+
+                                attended.executeUpdate();
+
+                                resultSet.close();
+                                resultSet1.close();
+                                connection1.close();
+
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            } finally {
                                 try {
                                     connection.close();
+                                    connection1.close();
+                                    connect();
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
                             }
-
-                            connect();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
                         }
+
 
                     }
                 });
@@ -219,6 +241,14 @@ public class StudentController implements Initializable {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (NullPointerException e1) {
+            e1.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

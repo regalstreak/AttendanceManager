@@ -73,8 +73,8 @@ public class AdminController implements Initializable {
 
             String sql = "SELECT * from USERS";
 
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
             gridPane.setHgap(30);
             gridPane.setVgap(10);

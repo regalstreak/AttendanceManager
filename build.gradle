@@ -27,6 +27,8 @@ dependencies {
     compile 'org.kordamp.ikonli:ikonli-javafx:2.4.0'
     compile 'org.kordamp.ikonli:ikonli-ionicons4-pack:2.4.0'
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
+    compile 'com.google.firebase:firebase-admin:6.5.0'
+
 }
 
 apply plugin: 'javafx-gradle-plugin'

@@ -101,7 +101,7 @@ public class LoginController implements Initializable {
 
                 if (resadmin.next()) {
                     System.out.println("Logged in admin");
-                    ourUser = new User(user, res.getInt("id"));
+                    ourUser = new User(user, resadmin.getInt("id"));
                     AnchorPane adminMain = FXMLLoader.load(getClass().getResource("/fxml/admin_main.fxml"));
                     rootPane.getChildren().setAll(adminMain);
                 } else {
@@ -119,7 +119,7 @@ public class LoginController implements Initializable {
             return ourUser;
         } finally {
             try {
-                connection.close ();
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
